@@ -5,7 +5,13 @@ import { Request, Response } from 'express'
   DOC:
 */
 export const authRegister = async ( req: Request, res: Response ) => {
+  const { name, email, password } = req.body;
+  
   try {
+    // Create new User
+    // Encrypt password
+    // Save to DB
+    // Generate JWT
 
     res.status( 201 ).json({
       ok: true,
