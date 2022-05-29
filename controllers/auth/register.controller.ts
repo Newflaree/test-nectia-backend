@@ -1,7 +1,10 @@
-import { Request, Response } from 'express'
+import { Request, Response } from 'express';
+import bcrypt from 'bcryptjs';
+// Models
+import { User } from '../../models';
 
 /*
-  PATH: ''
+  PATH: '/api/auth/register'
   DOC:
 */
 export const authRegister = async ( req: Request, res: Response ) => {
@@ -9,13 +12,20 @@ export const authRegister = async ( req: Request, res: Response ) => {
   
   try {
     // Create new User
+    const user = new User({ name, email, password });
+
     // Encrypt password
+    const salt = bcrypt.genSaltSync();
+    user.password = bcrypt.hashSync( password, salt );
+
     // Save to DB
-    // Generate JWT
+    await user.save();
+
+    //TODO: Generate JWT
 
     res.status( 201 ).json({
       ok: true,
-      msg: 'authRegister'
+      user
     });
 
   } catch ( err ) {
