@@ -4,6 +4,8 @@ import cors from 'cors';
 import { ApiPaths } from '../interfaces/api-interfaces';
 // DB Config
 import dbConnection from '../database/config.db';
+// Routes
+import { authRoutes } from '../routes';
 
 class Server {
   private app: Application;
@@ -20,6 +22,7 @@ class Server {
     // Init Methods
     this.dbConnect();
     this.middlewares();
+    this.routes();
   }
 
   async dbConnect() {
@@ -29,6 +32,10 @@ class Server {
   middlewares() {
     this.app.use( cors() );
     this.app.use( express.json() );
+  }
+
+  routes() {
+    this.app.use( this.apiPaths.auth, authRoutes );
   }
 
   listen() {

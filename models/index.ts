@@ -1,5 +1,5 @@
 import Server from './server.model';
 
-export = {
+export {
   Server
 }
