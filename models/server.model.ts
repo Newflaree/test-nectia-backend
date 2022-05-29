@@ -2,6 +2,8 @@ import express, { Application } from 'express';
 import cors from 'cors';
 // Interfaces
 import { ApiPaths } from '../interfaces/api-interfaces';
+// DB Config
+import dbConnection from '../database/config.db';
 
 class Server {
   private app: Application;
@@ -16,7 +18,12 @@ class Server {
     };
 
     // Init Methods
+    this.dbConnect();
     this.middlewares();
+  }
+
+  async dbConnect() {
+    await dbConnection();
   }
 
   middlewares() {
@@ -27,7 +34,7 @@ class Server {
   listen() {
     this.app.listen( this.port, () => {
       console.clear();
-      console.log( `${ '[SERVER.LISTEN]:'.green } Listening on port ${ this.port.green }` );
+      console.log( `${ '[SERVER.LISTEN]'.green }: Listening on port ${ this.port.green }` );
     });
   }
 }
