@@ -5,7 +5,7 @@ import { ApiPaths } from '../interfaces/api-interfaces';
 // DB Config
 import dbConnection from '../database/config.db';
 // Routes
-import { authRoutes } from '../routes';
+import { authRoutes, usersRoutes } from '../routes';
 
 class Server {
   private app: Application;
@@ -16,7 +16,8 @@ class Server {
     this.app = express();
     this.port = process.env.PORT || '3002';
     this.apiPaths = {
-      auth: '/api/auth'
+      auth: '/api/auth',
+      users: '/api/users'
     };
 
     // Init Methods
@@ -36,6 +37,7 @@ class Server {
 
   routes() {
     this.app.use( this.apiPaths.auth, authRoutes );
+    this.app.use( this.apiPaths.users, usersRoutes );
   }
 
   listen() {
