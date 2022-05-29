@@ -14,7 +14,7 @@ export interface LaptopProps {
   proce: string;
   ram: string;
   storage: string;
-  screen: string;
+  img?: string;
   user: ObjectId;
   status: boolean;
 }

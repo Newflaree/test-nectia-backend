@@ -24,10 +24,8 @@ const LaptopSchema = new Schema<LaptopProps>({
     type: String,
     required: [ true, 'Laptop storage is required' ]
   },
-  screen: {
-    type: String,
-    required: [ true, 'Laptop brand is required' ],
-    
+  img: {
+    type: String
   },
   user: {
     type: Schema.Types.ObjectId,

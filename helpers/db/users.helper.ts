@@ -1,7 +1,7 @@
 // Moldels
 import { User } from "../../models"
 
-export const emailValidator = async ( email: string ) => {
+export const emailValidator = async ( email: string = '' ) => {
   const emailExists = await User.findOne({ email });
 
   if ( emailExists ) {
@@ -11,7 +11,7 @@ export const emailValidator = async ( email: string ) => {
   return true;
 }
 
-export const userIdValidator = async ( id: string ) => {
+export const userIdValidator = async ( id: string = '' ) => {
   const userExists = await User.findById( id );
 
   if ( !userExists ) {
