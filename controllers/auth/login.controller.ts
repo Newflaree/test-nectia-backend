@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
+// Helpers
+import { generateJWT } from '../../helpers/jwt';
 // Models
 import { User } from '../../models';
 
@@ -31,6 +33,7 @@ export const authLogin = async ( req: Request, res: Response ) => {
 
     // Check if password is valid
     const validPass = bcrypt.compareSync( password, user.password );
+
     if ( !validPass ) {
       return res.status( 401 ).json({
         ok: false,
@@ -38,18 +41,20 @@ export const authLogin = async ( req: Request, res: Response ) => {
       });
     }
 
-    //TODO: Generate JWT
+    //Generate JWT
+    const token = await generateJWT( user._id );
 
     res.status( 200 ).json({
       ok: true,
-      user
+      user,
+      token
     });
 
   } catch ( err ) {
     console.log( `${ '[CONTROLLER.AUTH-LOGIN]'.red }: Error details - ${ err }` );
     res.status( 500 ).json({
       ok: false,
-      msg: 'Something went wrong. Talking to the Admin'
+      msg: 'Something went wrong. Talking the Admin'
     });
   }
 }
