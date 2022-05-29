@@ -7,12 +7,21 @@ import { User } from '../../models';
   DOC:
 */
 export const getUsers = async ( req: Request, res: Response ) => {
+  const { from = 0, limit = 5 } = req.query;
+  const condition = { status: true };
   
   try {
+    const [ total, users ] = await Promise.all([
+      User.countDocuments( condition ),
+      User.find( condition )
+        .skip( Number( from ) )
+        .limit( Number( limit ) )
+    ]);
 
     res.status( 200 ).json({
       ok: true,
-      msg: 'getUsers'
+      total,
+      users
     });
 
   } catch ( err ) {
