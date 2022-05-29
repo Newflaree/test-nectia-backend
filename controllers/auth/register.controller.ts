@@ -6,6 +6,7 @@ import { generateJWT } from '../../helpers/jwt';
 import { User } from '../../models';
 
 /*
+  PETITION: POST
   PATH: '/api/auth/register'
   DOC:
 */

@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { User } from '../../models';
 
 /*
+  PETITION: GET
   PATH: '/api/users'
   DOC:
 */

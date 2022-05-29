@@ -10,3 +10,13 @@ export const emailValidator = async ( email: string ) => {
 
   return true;
 }
+
+export const userIdValidator = async ( id: string ) => {
+  const userExists = await User.findById( id );
+
+  if ( !userExists ) {
+    throw new Error( 'There is no user with that id' );
+  }
+
+  return true;
+}
