@@ -5,7 +5,11 @@ import { ApiPaths } from '../interfaces/api-interfaces';
 // DB Config
 import dbConnection from '../database/config.db';
 // Routes
-import { authRoutes, usersRoutes } from '../routes';
+import {
+  authRoutes,
+  laptopsRoutes,
+  usersRoutes
+} from '../routes';
 
 class Server {
   private app: Application;
@@ -17,7 +21,8 @@ class Server {
     this.port = process.env.PORT || '3002';
     this.apiPaths = {
       auth: '/api/auth',
-      users: '/api/users'
+      users: '/api/users',
+      laptops: '/api/laptops'
     };
 
     // Init Methods
@@ -37,6 +42,7 @@ class Server {
 
   routes() {
     this.app.use( this.apiPaths.auth, authRoutes );
+    this.app.use( this.apiPaths.laptops, laptopsRoutes );
     this.app.use( this.apiPaths.users, usersRoutes );
   }
 
