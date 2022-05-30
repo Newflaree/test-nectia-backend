@@ -23,6 +23,7 @@ export const createLaptop = async ( req: UserAuthRequest, res: Response ) => {
 
   try {
     const laptop = new Laptop( data );
+    // Save to DB
     await laptop.save();
 
     res.status( 201 ).json({

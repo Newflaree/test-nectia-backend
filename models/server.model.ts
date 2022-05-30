@@ -8,6 +8,7 @@ import dbConnection from '../database/config.db';
 import {
   authRoutes,
   laptopsRoutes,
+  searchesRoutes,
   usersRoutes
 } from '../routes';
 
@@ -21,8 +22,9 @@ class Server {
     this.port = process.env.PORT || '3002';
     this.apiPaths = {
       auth: '/api/auth',
-      users: '/api/users',
-      laptops: '/api/laptops'
+      laptops: '/api/laptops',
+      searches: '/api/searches',
+      users: '/api/users'
     };
 
     // Init Methods
@@ -43,6 +45,7 @@ class Server {
   routes() {
     this.app.use( this.apiPaths.auth, authRoutes );
     this.app.use( this.apiPaths.laptops, laptopsRoutes );
+    this.app.use( this.apiPaths.searches, searchesRoutes );
     this.app.use( this.apiPaths.users, usersRoutes );
   }
 
