@@ -21,6 +21,11 @@ Una vez reconstruidos los node_modules/, vamos a compilar nuestro proyecto de Ty
 tsc
 ```
 
+Se recomienda también correr otra instancia de la terminal en la raíz del proyecto y dejar corriendo el TypeScript para que la compilación se haga cada vez que el archivo de modifique.
+```
+tsc --watch
+```
+
 Ahora que tenemos nuestro proyecto compilado, vamos a cargar las variables de entorno. Para esto creamos un archivo .env en la raíz del proyecto.
 
 Cuando las variables estén cargadas podemos levantar el proyecto con uno de los siguientes comandos
@@ -38,3 +43,7 @@ yarn start:dev
 ```
 npm run start:dev
 ```
+
+## JWT
+
+Los 2 servicios que no requieren un token para funcionar son el registro y el login. Todas las demás necesitan pasar 'x-token' en los headers, este token se genera cuando se realiza un registro o login exitoso y se devuelve en la petición, ambos se encuetran en la carpeta auth de la collección de Postman.
