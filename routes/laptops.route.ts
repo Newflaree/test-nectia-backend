@@ -31,6 +31,8 @@ router.post( '/', [
 ], createLaptop );
 
 router.get( '/', [
+  validateJWT,
+  validateFields
 ], getLaptops );
 
 router.get( '/:id', [

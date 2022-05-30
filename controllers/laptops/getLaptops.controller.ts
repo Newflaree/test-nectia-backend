@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { Laptop } from '../../models';
 // Models
 
 /*
@@ -6,11 +7,22 @@ import { Request, Response } from 'express';
   PATH: '/api/laptops'
 */
 export const getLaptops = async ( req: Request, res: Response ) => {
+  const { from = 0, limit = 5 } = req.query;
+  const condition = { status: true };
+  
   try {
+    const [ total, laptops ] = await Promise.all([
+      Laptop.countDocuments( condition ),
+      Laptop.find( condition )
+        .populate( 'user', 'name' )
+        .skip( Number( from ) )
+        .limit( Number( limit ) )
+    ]);
 
     res.status( 200 ).json({
       ok: true,
-      msg: 'getLaptops'
+      total,
+      laptops
     });
 
   } catch ( err ) {
