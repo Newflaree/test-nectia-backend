@@ -9,6 +9,7 @@ import {
   authRoutes,
   laptopsRoutes,
   searchesRoutes,
+  uploadsRoutes,
   usersRoutes
 } from '../routes';
 
@@ -24,6 +25,7 @@ class Server {
       auth: '/api/auth',
       laptops: '/api/laptops',
       searches: '/api/searches',
+      uploads: '/api/uploads',
       users: '/api/users'
     };
 
@@ -46,6 +48,7 @@ class Server {
     this.app.use( this.apiPaths.auth, authRoutes );
     this.app.use( this.apiPaths.laptops, laptopsRoutes );
     this.app.use( this.apiPaths.searches, searchesRoutes );
+    this.app.use( this.apiPaths.uploads, uploadsRoutes );
     this.app.use( this.apiPaths.users, usersRoutes );
   }
 

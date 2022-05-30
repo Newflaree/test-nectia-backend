@@ -1,21 +1,29 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 // Controllers
-import { collectionSearch } from '../controllers/searches';
+import { fileUpload, showImage } from '../controllers/uploads';
 // Helpers
 import { allowedCollections } from '../helpers/db/collections.helper';
 // Middlewares
 import { validateFields, validateJWT } from '../middlewares';
 
 /*
-  PATH: '/api/searches'
+  PATH: '/api/uploads'
 */
 const router: Router = Router();
 
-router.get( '/:collection/:term', [
+router.put( '/:collection/:id', [
   validateJWT,
+  check( 'id', 'Invalid mongo id' ).isMongoId(),
   check( 'collection' ).custom( c => allowedCollections( c, [ 'users', 'laptops' ] ) ),
   validateFields
-], collectionSearch );
+], fileUpload );
+
+router.get( '/:collection/:id', [
+  validateJWT,
+  check( 'id', 'Invalid mongo id' ).isMongoId(),
+  check( 'collection' ).custom( c => allowedCollections( c, [ 'users', 'laptops' ] ) ),
+  validateFields
+], showImage );
 
 export default router;

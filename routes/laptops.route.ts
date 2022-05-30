@@ -62,5 +62,4 @@ router.delete( '/:id', [
   validateFields
 ], deleteLaptop );
 
-
 export default router;
