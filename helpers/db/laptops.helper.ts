@@ -12,3 +12,13 @@ export const laptopNameValidator = async ( name: string = '' ) => {
 
   return true;
 }
+
+export const laptopIdValidator = async ( id: string = '' ) => {
+  const laptopExists = await Laptop.findById( id );
+   
+  if ( !laptopExists ) {
+    throw new Error( 'There is no user with that id' );
+  }
+
+  return true;
+}

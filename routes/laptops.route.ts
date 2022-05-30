@@ -9,7 +9,7 @@ import {
   updateLaptop
 } from '../controllers/laptops';
 // Helpers
-import { laptopNameValidator } from '../helpers/db/laptops.helper';
+import { laptopIdValidator, laptopNameValidator } from '../helpers/db/laptops.helper';
 // Middlewares
 import { validateFields, validateJWT } from '../middlewares';
 
@@ -36,12 +36,20 @@ router.get( '/', [
 ], getLaptops );
 
 router.get( '/:id', [
+  validateJWT,
+  check( 'id', 'Invalid mongo id' ).isMongoId(),
+  check( 'id' ).custom( laptopIdValidator ),
+  validateFields
 ], getLaptop );
 
 router.put( '/:id', [
 ], updateLaptop );
 
 router.delete( '/:id', [
+  validateJWT,
+  check( 'id', 'Invalid mongo id' ).isMongoId(),
+  check( 'id' ).custom( laptopIdValidator ),
+  validateFields
 ], deleteLaptop );
 
 
