@@ -43,6 +43,16 @@ router.get( '/:id', [
 ], getLaptop );
 
 router.put( '/:id', [
+  validateJWT,
+  check( 'id', 'Invalid mongo id' ).isMongoId(),
+  check( 'id' ).custom( laptopIdValidator ),
+  check( 'name', 'Laptop name is required' ).not().isEmpty(),
+  check( 'brand', 'Laptop brand is required' ).not().isEmpty(),
+  check( 'proce', 'Laptop processor is required' ).not().isEmpty(),
+  check( 'ram', 'Laptop ram is required' ).not().isEmpty(),
+  check( 'storage', 'Laptop storage is required' ).not().isEmpty(),
+  check( 'name' ).custom( laptopNameValidator ),
+  validateFields
 ], updateLaptop );
 
 router.delete( '/:id', [

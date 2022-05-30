@@ -1,16 +1,23 @@
 import { Request, Response } from 'express';
 // Models
+import { Laptop } from '../../models';
 
 /*
   PETITION: PUT
   PATH: '/api/laptops/:id'
 */
 export const updateLaptop = async ( req: Request, res: Response ) => {
-  try {
+  const { id } = req.params;
+  const { status, img, _id, ...data } = req.body;
+  data.name = data.name.toUpperCase();
 
+  try {
+    const laptop = await Laptop.findByIdAndUpdate( id, data, { new: true } )
+      .populate( 'user', 'name' );
+      
     res.status( 200 ).json({
       ok: true,
-      msg: 'updateLaptop'
+      laptop
     });
 
   } catch ( err ) {
