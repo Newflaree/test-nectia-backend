@@ -26,7 +26,7 @@ Se recomienda también correr otra instancia de la terminal en la raíz del proy
 tsc --watch
 ```
 
-Ahora que tenemos nuestro proyecto compilado, vamos a cargar las variables de entorno. Para esto creamos un archivo .env en la raíz del proyecto.
+Ahora que tenemos nuestro proyecto compilado, vamos a cargar las variables de entorno. Para esto, pegamos el archivo .env en la raíz del proyecto, este archivo se enviará por correo junto a la colección de Postman.
 
 Cuando las variables estén cargadas podemos levantar el proyecto con uno de los siguientes comandos
 Para producción:
@@ -46,4 +46,7 @@ npm run start:dev
 
 ## JWT
 
-Los 2 servicios que no requieren un token para funcionar son el registro y el login. Todas las demás necesitan pasar 'x-token' en los headers, este token se genera cuando se realiza un registro o login exitoso y se devuelve en la petición, ambos se encuetran en la carpeta auth de la collección de Postman.
+Los 2 servicios que no requieren un token para funcionar son el registro y el
+login. Todas las demás necesitan pasar 'x-token' en los headers, este token se
+genera cuando se realiza un registro o login exitoso y se devuelve en la
+petición, ambos se encuetran en la carpeta auth de la colección de Postman.
