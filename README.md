@@ -3,7 +3,7 @@
 ## Resumen superficial de la API:
 El desarrollo de la prueba consiste en la implementación de un CRUD productos, pasando por la creación de usuarios. Estos se pueden logear en la app y listar a los demás usuarios, a la vez que eliminar usuarios.
 
-Por la parte del producto, elegí hacer un CRUD de notebooks. El usario debe estar logeado y validado con un JWT para poder realizar la mantención de los equipos. 
+Por la parte del producto, elegí hacer un CRUD de notebooks. El usuario debe estar logeado y validado con un JWT para poder realizar la mantención de los equipos. 
 
 Adicionalmente se agregó un servicio para buscar por collection y por termino de busqueda, y otro servicio que sube una imágen de perfil para los usuarios o imágen de producto para los notebooks.
 
@@ -12,6 +12,7 @@ Primero que todo, vamos a instalar los módulos de node para que nuestro proyect
 ```
 yarn
 ```
+O
 ```
 npm install
 ```
@@ -33,6 +34,7 @@ Para producción:
 ```
 yarn start
 ```
+O
 ```
 npm run start
 ```
@@ -40,6 +42,7 @@ Para desarrollo:
 ```
 yarn start:dev
 ```
+O
 ```
 npm run start:dev
 ```
