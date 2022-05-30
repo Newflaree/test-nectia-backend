@@ -1,16 +1,33 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
+// Interfaces
+import { UserAuthRequest } from '../../interfaces/http-interfaces';
 // Models
+import { Laptop } from '../../models';
 
 /*
   PETITION: POST
   PATH: '/api/laptops'
 */
-export const createLaptop = async ( req: Request, res: Response ) => {
+export const createLaptop = async ( req: UserAuthRequest, res: Response ) => {
+  const name = req.body.name.toUpperCase();
+  const { brand, proce, ram, storage } = req.body;
+
+  const data = {
+    name,
+    brand,
+    proce,
+    ram,
+    storage,
+    user: req.user.id
+  }
+
   try {
+    const laptop = new Laptop( data );
+    await laptop.save();
 
     res.status( 201 ).json({
       ok: true,
-      msg: 'createLaptop'
+      laptop
     });
 
   } catch ( err ) {
