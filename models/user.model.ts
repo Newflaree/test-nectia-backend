@@ -16,6 +16,9 @@ const UserSchema = new Schema<UserProps>({
     type: String,
     required: [ true, 'Password is required' ],
   },
+  img: {
+    type: String
+  },
   role: {
     type: String,
     enum: [ 'USER_ROLE', 'ADMIN_ROLE' ],

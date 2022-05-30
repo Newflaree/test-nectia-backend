@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import fileupload from 'express-fileupload';
 import cors from 'cors';
 // Interfaces
 import { ApiPaths } from '../interfaces/api-interfaces';
@@ -40,8 +41,16 @@ class Server {
   }
 
   middlewares() {
+    // Cors
     this.app.use( cors() );
+    // Parse Body
     this.app.use( express.json() );
+    // File upload
+    this.app.use( fileupload({
+      useTempFiles: true,
+      tempFileDir: '/tmp/',
+      createParentPath: true
+    }));
   }
 
   routes() {

@@ -15,16 +15,8 @@ export const authLogin = async ( req: Request, res: Response ) => {
   try {
     const user = await User.findOne({ email });
 
-    // Check if email exists
-    if ( !user ) {
-      return res.status( 401 ).json({
-        ok: false,
-        msg: 'Incorrect email or password'
-      });
-    }
-
-    // Check if user is active
-    if ( !user.status ) {
+    // Check if email exists or if user is active
+    if ( !user || !user.status ) {
       return res.status( 401 ).json({
         ok: false,
         msg: 'Incorrect email or password'

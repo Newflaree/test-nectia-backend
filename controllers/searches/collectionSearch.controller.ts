@@ -50,7 +50,7 @@ export const collectionSearch = async ( req: Request, res: Response ) => {
       default:
         return res.status( 400 ).json({
           ok: false,
-          msg: 'Collection not allowed'
+          msg: 'This endpoint is not yet validated'
         });
     }
 
