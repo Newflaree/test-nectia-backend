@@ -8,7 +8,7 @@ import { UserAuthRequest } from '../../interfaces/http-interfaces';
 import { User } from '../../models';
 
 /*
-  PETITION: POST
+  PETITION: GET
   PATH: '/api/auth/renew'
 */
 export const renewToken = async ( req: UserAuthRequest, res: Response ) => {
