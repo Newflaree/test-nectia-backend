@@ -63,8 +63,13 @@ class Server {
 
   listen() {
     this.app.listen( this.port, () => {
-      console.clear();
-      console.log( `${ '[SERVER.LISTEN]'.green }: Listening on port ${ this.port.green }` );
+      try {
+        console.clear();
+        console.log( `${ '[SERVER.LISTEN]'.green }: Listening on port ${ this.port.green }` );
+
+      } catch ( err ) {
+        console.log( `${ '[SERVER.LISTEN]'.red }: Error details - ${ err }` );
+      }
     });
   }
 }
