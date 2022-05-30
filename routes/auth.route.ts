@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 // Controllers
-import { authLogin, authRegister } from '../controllers/auth';
+import { authLogin, authRegister, renewToken } from '../controllers/auth';
 // Helpers
 import { emailValidator } from '../helpers/db/users.helper';
 // Middlewares
-import { validateFields } from '../middlewares';
+import { validateFields, validateJWT } from '../middlewares';
 
 
 /*
@@ -26,5 +26,10 @@ router.post( '/login', [
   check( 'password', 'Password is required' ).not().isEmpty(),
   validateFields
 ], authLogin );
+
+router.get( '/renew', [
+  validateJWT,
+  validateFields
+], renewToken );
 
 export default router;

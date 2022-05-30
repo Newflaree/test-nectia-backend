@@ -11,14 +11,7 @@ export const deleteLaptop = async ( req: Request, res: Response ) => {
   const inactivator = { status: false };
 
   try {
-    const laptop = await Laptop.findByIdAndUpdate( id, inactivator, ) || { status: false };
-
-    if ( !laptop.status ) {
-      return res.status( 400 ).json({
-        ok: false,
-        msg: 'There is no laptop with that id'
-      });
-    }
+    await Laptop.findByIdAndUpdate( id, inactivator, );
 
     res.status( 200 ).json({
       ok: true,
@@ -29,7 +22,7 @@ export const deleteLaptop = async ( req: Request, res: Response ) => {
     console.log( `${ '[CONTROLLER.DELETE-LAPTOP]'.red }: Error details - ${ err }` );
     res.status( 500 ).json({
       ok: false,
-      msg: 'Something went wrong. Talking the Admin'
+      msg: 'Something went wrong. Talk to the Admin'
     });
   }
 }

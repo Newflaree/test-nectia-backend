@@ -8,7 +8,6 @@ import { User } from '../../models';
 /*
   PETITION: POST
   PATH: '/api/auth/register'
-  DOC:
 */
 export const authRegister = async ( req: Request, res: Response ) => {
   const { name, email, password } = req.body;
@@ -37,7 +36,7 @@ export const authRegister = async ( req: Request, res: Response ) => {
     console.log( `${ '[CONTROLLER.AUTH-REGISTER]'.red }: Error details - ${ err }` );
     res.status( 500 ).json({
       ok: false,
-      msg: 'Something went wrong. Talking the Admin'
+      msg: 'Something went wrong. Talk to the Admin'
     });
   }
 }

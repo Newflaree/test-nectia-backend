@@ -18,5 +18,9 @@ export const userIdValidator = async ( id: string = '' ) => {
     throw new Error( 'There is no user with that id' );
   }
 
+  if ( !userExists.status ) {
+    throw new Error( 'There is no user with that id' );
+  }
+
   return true;
 }

@@ -5,7 +5,6 @@ import { User } from '../../models';
 /*
   PETITION: GET
   PATH: '/api/users'
-  DOC:
 */
 export const getUsers = async ( req: Request, res: Response ) => {
   const { from = 0, limit = 5 } = req.query;
@@ -29,7 +28,7 @@ export const getUsers = async ( req: Request, res: Response ) => {
     console.log( `${ '[CONTROLLER.GET-USERS]'.red }: Error details - ${ err }` );
     res.status( 500 ).json({
       ok: false,
-      msg: 'Something went wrong. Talking the Admin'
+      msg: 'Something went wrong. Talk to the Admin'
     });
   }
 }
